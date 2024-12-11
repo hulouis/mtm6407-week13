@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
+    description: '';
     displayName: 'Products';
     pluralName: 'products';
     singularName: 'product';
@@ -380,6 +381,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    colour: Schema.Attribute.Enumeration<
+      ['Black', 'Red', 'Green', 'Sliver', 'Blue', 'Yellow']
+    > &
+      Schema.Attribute.DefaultTo<'Black'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
